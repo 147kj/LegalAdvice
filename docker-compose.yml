@@ -8,23 +8,24 @@ services:
       - 80:80
       - 443:443
     volumes:
-      - ./nginx/conf.d:/etc/nginx/conf.d
+      - ./build/nginx/conf.d:/etc/nginx/conf.d
     depends_on:
-      - app
+      - service
 
-#  mongodb:
-#    container_name: some-mongo
-#    image: mongo:3.6
-#    environment:
-#      - MONGO_DATA_DIR=/data/db
-#      - MONGO_LOG_DIR=/dev/null
-#    volumes:
-#      - ./data/db:/data/db
-#    ports:
-#      - 27017:27017
-#    command: mongod --smallfiles --logpath=/dev/null # --quiet
+  mysql:
+    container_name: some-mysql
+    image: mysql/mysql-server:5.7
+    environment:
+      MYSQL_DATABASE: test
+      MYSQL_ROOT_PASSWORD: gudemaoning147
+      MYSQL_ROOT_HOST: '%'
+    ports:
+      - "3306:3306"
+    restart: always
+    volumes:
+      - /root/mysql/mysql_data:/var/lib/mysql
 
-  app:
+  service:
     restart: always
     build: ./service
     working_dir: /service
