@@ -21,7 +21,7 @@
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <swagger-version>2.9.2</swagger-version>
+        <swagger-version>2.10.0</swagger-version>
     </properties>
 
     <!-- Spring web brings all required dependencies to build web application. -->
